@@ -7,5 +7,5 @@
 2.勾选要下载的章节。灰色的是已经下载过的。
 ![image](https://github.com/XiangxinKong/manhuagui-downloader/blob/master/screenshot/1.GIF)
 
-3.开始下载
+3.开始下载。下载完后会自动转码成jpg。（目前设置每0.5秒下载1页，如果下载量不是很大，可以调快）
 ![image](https://github.com/XiangxinKong/manhuagui-downloader/blob/master/screenshot/2.GIF)
