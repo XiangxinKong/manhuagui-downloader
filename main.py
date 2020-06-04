@@ -19,7 +19,7 @@ class mainWindow(tk.Tk):
         self.var_address = tk.StringVar()
         self.var_url = tk.StringVar()
         self.var_address.set('manga/')
-        self.var_url.set('https://www.manhuagui.com/comic/17201/')
+        self.var_url.set('https://www.manhuagui.com/comic/24973/')
         tk.Entry(self, textvariable=self.var_url, font=('Arial', 14), width=28).place(x=60, y=baseY)  # url field
         tk.Entry(self, textvariable=self.var_address, font=('Arial', 14), width=28).place(x=60,
                                                                                           y=baseY + 40)  # address field
