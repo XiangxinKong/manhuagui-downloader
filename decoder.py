@@ -1,5 +1,6 @@
-# @Author: Xiangxin Kong
+# @by HSSLC
 # @Date: 2020.5.30
+# 重制，参考自 https://github.com/HSSLC/manhuagui-dlr 中的trans.py parse.py
 import requests, re
 import json
 from lzstring import LZString as lz
