@@ -1,5 +1,6 @@
 # manhuagui-downloader 漫画柜下载器
 带有图形界面，纯py，点击exe文件可直接运行。
+
 decoder.py中破解js那段参考自https://github.com/HSSLC/manhuagui-dlr 中的trans.py和parse.py。版权归HSSLC所有。
 
 1.复制漫画网址，包含comic/xxxx 就可以了，点击download
