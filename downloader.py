@@ -29,7 +29,7 @@ class MangaDownloader:
         self.year = bf.find("strong", text="出品年代：").parent.a.text
         self.region = bf.find("strong", text="漫画地区：").parent.a.text
         self.chapters = list(
-            map(lambda x: [x.get('title'), x.get('href'), None], bf.find('div', id="chapter-list-0").findAll('a')))
+            map(lambda x: [x.get('title'), x.get('href'), None], bf.find_all('a',{'class':'status0'})))
         self.chapters.reverse()
         self.length = len(self.chapters)
 

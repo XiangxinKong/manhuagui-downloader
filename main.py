@@ -42,8 +42,8 @@ class downloadPanel(Toplevel):
     def __init__(self, s):
         super().__init__()
         super().title('Manhuagui Downloader')
-        super().geometry('400x160')
-        super().geometry('600x' + str(40 * (s.length // 4) + 260))
+        super().geometry('900x160')
+        super().geometry('900x' + str(40 * (s.length // 6) + 260))
         # initialize labels
         self.place_label(s)
         # iniitialie select buttons
@@ -79,12 +79,12 @@ class downloadPanel(Toplevel):
         for i in range(len(s.chapters)):
             s.chapters[i][2] = IntVar()
             cha = tk.Checkbutton(self, text=s.chapters[i][0], font=('Arial', 14), variable=s.chapters[i][2])
-            cha.place(x=(i % 4) * 150, y=self.baseY + (i // 4) * 40)
+            cha.place(x=(i % 6) * 150, y=self.baseY + (i // 6) * 40)
             if s.chapters[i][0] in s.existedChapters():
                 cha.select()
                 cha.config(state='disabled')
             self.buttons.append(cha)
-        self.baseY += (s.length // 4) * 40
+        self.baseY += (s.length // 6) * 40
 
     def downloadChapters(self, s):
         for i in range(s.length):
