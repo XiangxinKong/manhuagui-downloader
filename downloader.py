@@ -9,6 +9,7 @@ from bs4 import BeautifulSoup
 from PIL import Image
 from decoder import get
 from header import header
+from lzstring import LZString as lz
 
 
 class MangaDownloader:
@@ -28,6 +29,14 @@ class MangaDownloader:
         self.plot = bf.find("strong", text="漫画剧情：").parent.a.text
         self.year = bf.find("strong", text="出品年代：").parent.a.text
         self.region = bf.find("strong", text="漫画地区：").parent.a.text
+        # if this manga is hidden
+        if bf.find('div', {'class': 'warning-bar'}) is not None:
+            val = bf.find('input', {'id': '__VIEWSTATE'}).get('value')
+            # get the hidden content
+            hiddenContent = lz.decompressFromBase64(val)
+            # parse the hidden content
+            bf = BeautifulSoup(hiddenContent, 'html.parser')
+
         self.chapters = list(
             map(lambda x: [x.get('title'), x.get('href'), None], bf.find_all('a',{'class':'status0'})))
         self.chapters.reverse()
