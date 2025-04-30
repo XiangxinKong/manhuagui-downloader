@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 from PIL import Image
 from decoder import get
 from header import header
-
+from lzstring import LZString as lz
 
 class MangaDownloader:
     def __init__(self, address, path):
@@ -28,6 +28,19 @@ class MangaDownloader:
         self.plot = bf.find("strong", text="漫画剧情：").parent.a.text
         self.year = bf.find("strong", text="出品年代：").parent.a.text
         self.region = bf.find("strong", text="漫画地区：").parent.a.text
+#新增隐藏章节获取代码
+        hidden_input = bf.find('input', {'id': '__VIEWSTATE'})
+        if hidden_input:
+            encoded_data = hidden_input.get('value')
+            try:
+                decoded_html = lz.decompressFromBase64(encoded_data)
+                decoded_bf = BeautifulSoup(decoded_html, 'html.parser')
+                error_div = bf.find('div', {'id': 'erroraudit_show'})
+                if error_div:
+                    error_div.replace_with(decoded_bf)
+                hidden_input.decompose()
+            except Exception as e:
+                print(f"解密隐藏章节失败: {e}")            
         self.chapters = list(
             map(lambda x: [x.get('title'), x.get('href'), None], bf.find_all('a',{'class':'status0'})))
         self.chapters.reverse()
